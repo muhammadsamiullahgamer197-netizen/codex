@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ShadowVale is a hyper 3D, liquid-glass SA-MP/open.mp server forum frontend with category boards and thread creation flows." />
+  <title>ShadowVale — Hyper 3D SA-MP Forum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas class="starfield" aria-hidden="true"></canvas>
+  <div class="cursor-halo" aria-hidden="true"></div>
+  <div class="cinema-bg" aria-hidden="true">
+    <span class="aurora aurora-a"></span>
+    <span class="aurora aurora-b"></span>
+    <span class="aurora aurora-c"></span>
+    <span class="horizon-grid"></span>
+    <span class="skyline skyline-left"></span>
+    <span class="skyline skyline-right"></span>
+  </div>
+
+  <header class="topbar" id="top">
+    <nav class="nav shell" aria-label="ShadowVale forum navigation">
+      <a class="brand" href="#top" aria-label="ShadowVale home">
+        <span class="brand-prism"><i></i><i></i><i></i><i></i></span>
+        <span><strong>Shadow</strong>Vale</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu">
+        <span></span><span></span><span></span>
+        <span class="sr-only">Toggle menu</span>
+      </button>
+
+      <div class="nav-links" id="primary-menu">
+        <a href="#categories">Categories</a>
+        <a href="#threads">Threads</a>
+        <a href="#factions">Factions</a>
+        <a href="#staff">Staff</a>
+        <a href="#join">Connect</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="nav-icon" type="button" aria-label="Open forum search" data-open-search>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.4-4.4m1.4-5.6a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        </button>
+        <button class="motion-toggle" type="button" aria-pressed="false" aria-label="Toggle calm animation mode"><span></span></button>
+        <button class="btn btn-small" type="button" data-open-composer>New Thread</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell section-pad">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> ShadowVale Roleplay · SA-MP / open.mp</p>
+        <h1>Forum command center for a living San Andreas underworld.</h1>
+        <p class="hero-text">A clean premium forum UI for your server: liquid glass panels, neumorphic depth, realistic 3D city holograms, faction boards, staff reports, ban appeals, guides, marketplace listings, and category-based thread creation.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#categories">Browse categories</a>
+          <button class="btn btn-ghost" type="button" data-copy-ip>Copy IP · play.shadowvale.net:7777</button>
+        </div>
+        <div class="hero-metrics" aria-label="Server statistics">
+          <article><strong data-count="428">0</strong><span>players online</span></article>
+          <article><strong data-count="82">0</strong><span>active factions</span></article>
+          <article><strong data-count="24690">0</strong><span>threads created</span></article>
+        </div>
+      </div>
+
+      <div class="hero-showcase reveal" data-tilt>
+        <div class="realistic-phone">
+          <div class="phone-light"></div>
+          <div class="phone-screen glass-panel">
+            <div class="screen-top"><span class="live-dot"></span><strong>ShadowVale Live</strong><small>open.mp</small></div>
+            <div class="map-card">
+              <div class="map-orbit"></div>
+              <b style="--x:28%;--y:44%"></b><b style="--x:62%;--y:32%"></b><b style="--x:74%;--y:68%"></b>
+            </div>
+            <div class="mini-thread"><span>Hot thread</span><strong>LSPD academy wave #18 briefing</strong><em>112 replies · 9 min ago</em></div>
+          </div>
+        </div>
+        <div class="floating-panel panel-ip"><span>Server IP</span><strong>play.shadowvale.net:7777</strong></div>
+        <div class="floating-panel panel-ping"><span>Ping</span><strong>23ms</strong><small>stable route</small></div>
+        <div class="floating-panel panel-staff"><span>Staff</span><strong>18 online</strong><small>tickets monitored</small></div>
+      </div>
+    </section>
+
+    <section class="control-dock shell reveal" aria-label="Forum controls">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.4-4.4m1.4-5.6a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/></svg>
+        <input type="search" placeholder="Search rules, appeals, faction apps, vehicles, staff tickets, player reports..." />
+      </div>
+      <div class="dock-actions">
+        <button class="active" type="button">All</button>
+        <button type="button">Solved</button>
+        <button type="button">Applications</button>
+        <button type="button">Reports</button>
+        <button type="button">Marketplace</button>
+      </div>
+    </section>
+
+    <section class="forum-layout shell" id="categories">
+      <aside class="side-panel glass-panel reveal" aria-label="Forum shortcuts">
+        <div class="profile-card">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&q=80" alt="ShadowVale staff avatar">
+          <div><strong>Admin Vex</strong><span>Founder · Lead Developer</span></div>
+        </div>
+        <a class="side-link active" href="#categories"><span>▣</span> Categories</a>
+        <a class="side-link" href="#threads"><span>◈</span> Latest Threads</a>
+        <a class="side-link" href="#factions"><span>⬡</span> Factions</a>
+        <a class="side-link" href="#staff"><span>◇</span> Staff Desk</a>
+        <a class="side-link" href="#join"><span>◎</span> Server Access</a>
+        <div class="server-card-mini">
+          <span>Connection</span>
+          <strong>play.shadowvale.net:7777</strong>
+          <button type="button" data-copy-ip>Copy Server IP</button>
+        </div>
+      </aside>
+
+      <section class="forum-main">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Structured forum categories</p>
+          <h2>Every category is ready for players to create focused threads.</h2>
+        </div>
+
+        <div class="category-grid">
+          <article class="category-card reveal" data-tilt data-category="Announcements">
+            <div class="category-head"><span class="category-icon">📢</span><button type="button" data-open-composer data-category="Announcements">Create Thread</button></div>
+            <h3>Announcements</h3><p>Owner broadcasts, changelogs, maintenance, patch notes, events, and official server news.</p>
+            <footer><span>982 topics</span><strong>Official board</strong></footer>
+          </article>
+          <article class="category-card reveal" data-tilt data-category="Applications">
+            <div class="category-head"><span class="category-icon">📝</span><button type="button" data-open-composer data-category="Applications">Create Thread</button></div>
+            <h3>Applications</h3><p>Whitelist, helper, admin, mapper, faction, business license, and ban-recovery applications.</p>
+            <footer><span>217 pending</span><strong>Review queue</strong></footer>
+          </article>
+          <article class="category-card reveal" data-tilt data-category="Player Reports">
+            <div class="category-head"><span class="category-icon">⚖️</span><button type="button" data-open-composer data-category="Player Reports">Create Thread</button></div>
+            <h3>Player Reports</h3><p>Evidence-based complaints, rulebreak reports, staff notes, appeals, and case archives.</p>
+            <footer><span>46 urgent</span><strong>Moderated</strong></footer>
+          </article>
+          <article class="category-card reveal" data-tilt data-category="Guides & Rules">
+            <div class="category-head"><span class="category-icon">📚</span><button type="button" data-open-composer data-category="Guides & Rules">Create Thread</button></div>
+            <h3>Guides & Rules</h3><p>Commands, roleplay rules, economy explainers, beginner guides, and solved knowledge base posts.</p>
+            <footer><span>99% solved</span><strong>Knowledge</strong></footer>
+          </article>
+          <article class="category-card reveal" data-tilt data-category="Marketplace">
+            <div class="category-head"><span class="category-icon">💎</span><button type="button" data-open-composer data-category="Marketplace">Create Thread</button></div>
+            <h3>Marketplace</h3><p>Vehicle auctions, homes, businesses, services, escrow listings, and verified trade threads.</p>
+            <footer><span>$24.2M volume</span><strong>Trading</strong></footer>
+          </article>
+          <article class="category-card reveal" data-tilt data-category="Faction HQ">
+            <div class="category-head"><span class="category-icon">🛡️</span><button type="button" data-open-composer data-category="Faction HQ">Create Thread</button></div>
+            <h3>Faction HQ</h3><p>LSPD, EMS, News, Government, gangs, crews, recruitment, rosters, and internal notices.</p>
+            <footer><span>82 factions</span><strong>Roleplay</strong></footer>
+          </article>
+        </div>
+
+        <div class="content-split" id="threads">
+          <section class="thread-panel glass-panel reveal">
+            <div class="panel-title">
+              <div><p class="eyebrow"><span></span> Live discussion stream</p><h2>Latest ShadowVale threads</h2></div>
+              <button type="button" data-open-composer>Create Thread</button>
+            </div>
+            <article class="thread-row hot"><div class="heat"><strong>98</strong><span>heat</span></div><div><div class="tags"><span>Reports</span><span>Evidence</span><span>Urgent</span></div><h3>Downtown weapon trafficking report near Pershing Square</h3><p>Screenshots, /time logs, suspect IDs, and staff-only notes attached for review.</p><div class="thread-meta"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&w=80&q=80" alt=""><span>Detective Rowe</span><span>4 min ago</span><span>38 replies</span></div></div></article>
+            <article class="thread-row"><div class="heat"><strong>84</strong><span>heat</span></div><div><div class="tags"><span>Applications</span><span>LSPD</span></div><h3>LSPD academy wave #18 — interview schedule and handbook</h3><p>Cadets can confirm availability, upload documents, and check the live interview queue.</p><div class="thread-meta"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt=""><span>Captain Miles</span><span>16 min ago</span><span>112 replies</span></div></div></article>
+            <article class="thread-row"><div class="heat"><strong>76</strong><span>heat</span></div><div><div class="tags"><span>Market</span><span>Auction</span></div><h3>Import garage auction: Sultan, Infernus, Elegy, and rare plates</h3><p>Escrow-style bid thread with inspection images, vehicle history, and anti-scam rules.</p><div class="thread-meta"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" alt=""><span>Vale Imports</span><span>31 min ago</span><span>89 replies</span></div></div></article>
+          </section>
+
+          <aside class="insight-stack">
+            <section class="glass-panel radar-panel reveal"><div class="panel-title compact"><h2>Faction radar</h2><span class="live-dot"></span></div><div class="radar"><i></i><b style="--x:28%;--y:44%"></b><b style="--x:63%;--y:35%"></b><b style="--x:72%;--y:70%"></b></div><div class="status-list"><span><strong>23ms</strong> ping</span><span><strong>18</strong> staff</span><span><strong>4</strong> events</span></div></section>
+            <section class="glass-panel compose-preview reveal"><h2>Fast creation</h2><p>Select any category and press <strong>Create Thread</strong>. The composer opens pre-filled with that board.</p><button class="btn" type="button" data-open-composer>Create Thread</button></section>
+          </aside>
+        </div>
+      </section>
+    </section>
+
+    <section class="factions shell section-pad" id="factions">
+      <div class="section-heading reveal centered"><p class="eyebrow"><span></span> Roleplay groups</p><h2>Minimal faction portals with premium depth.</h2></div>
+      <div class="faction-grid">
+        <article class="faction-card reveal" data-tilt><span>🚓</span><h3>LSPD</h3><p>Recruitment, academy training, arrest logs, and patrol schedules.</p><strong>Recruiting</strong></article>
+        <article class="faction-card reveal" data-tilt><span>🚑</span><h3>EMS</h3><p>Medical shifts, rescue logs, hospital applications, and public safety notices.</p><strong>Open</strong></article>
+        <article class="faction-card reveal" data-tilt><span>🕶️</span><h3>Underworld</h3><p>Gang lore, turf diplomacy, black market stories, and private faction rooms.</p><strong>Invite only</strong></article>
+        <article class="faction-card reveal" data-tilt><span>📰</span><h3>News Network</h3><p>City journalism, event coverage, advertisements, and live broadcasts.</p><strong>Hiring</strong></article>
+      </div>
+    </section>
+
+    <section class="staff-join shell section-pad">
+      <form class="staff-card glass-panel reveal" id="staff">
+        <div class="panel-title"><div><p class="eyebrow"><span></span> Staff desk</p><h2>Support ticket</h2></div><span class="encrypted">Encrypted</span></div>
+        <label>Title<input type="text" value="Need staff review for faction application" /></label>
+        <label>Department<select><option>General Support</option><option>Ban Appeal</option><option>Bug Report</option><option>Donation Help</option></select></label>
+        <label>Details<textarea rows="5">Include player IDs, screenshots, timestamps, and a clean explanation.</textarea></label>
+        <button class="btn" type="button">Submit ticket</button>
+      </form>
+
+      <div class="join-card reveal" id="join">
+        <div><p class="eyebrow"><span></span> Connect</p><h2>Launch SA-MP or open.mp and continue the story on ShadowVale.</h2><p>Use the forum for applications, character bios, faction enrollment, ban appeals, server events, auctions, and staff tickets.</p></div>
+        <div class="connect-box"><span>Server IP</span><strong>play.shadowvale.net:7777</strong><button class="btn" type="button" data-copy-ip>Copy IP</button></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div class="footer-orb" aria-hidden="true"></div>
+    <a class="brand" href="#top"><span class="brand-prism"><i></i><i></i><i></i><i></i></span><span><strong>Shadow</strong>Vale</span></a>
+    <p>Hyper 3D liquid-glass frontend for a ShadowVale SA-MP/open.mp server forum.</p>
+    <div class="footer-links"><a href="#categories">Categories</a><a href="#threads">Threads</a><a href="#staff">Staff</a><a href="#join">Connect</a></div>
+  </footer>
+
+  <div class="toast" role="status" aria-live="polite">Ready.</div>
+
+  <div class="search-modal" aria-hidden="true" role="dialog" aria-label="Search ShadowVale forum">
+    <div class="modal-card glass-panel">
+      <button class="modal-close" type="button" aria-label="Close search">×</button>
+      <h2>Search ShadowVale</h2>
+      <input type="search" placeholder="Try: ban appeal, LSPD application, Infernus auction" />
+      <div class="quick-results"><span>Popular:</span><button>whitelist</button><button>appeal</button><button>faction</button><button>vehicle auction</button></div>
+    </div>
+  </div>
+
+  <div class="composer-modal" aria-hidden="true" role="dialog" aria-label="Create a new thread">
+    <form class="composer-card glass-panel">
+      <button class="composer-close" type="button" aria-label="Close composer">×</button>
+      <p class="eyebrow"><span></span> Create thread</p>
+      <h2>Start a ShadowVale discussion</h2>
+      <label>Category<select id="thread-category"><option>Announcements</option><option>Applications</option><option>Player Reports</option><option>Guides & Rules</option><option>Marketplace</option><option>Faction HQ</option></select></label>
+      <label>Thread title<input type="text" placeholder="Write a clear topic title..." /></label>
+      <label>Message<textarea rows="6" placeholder="Add roleplay context, proof, screenshots, IDs, rules, or details..."></textarea></label>
+      <div class="composer-tools"><button type="button">Attach Proof</button><button type="button">Add Poll</button><button type="button">Mark Private</button></div>
+      <button class="btn" type="button">Publish Thread</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
